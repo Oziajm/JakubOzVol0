@@ -68,7 +68,6 @@ public class BaseController : MonoBehaviour, IDamageable
                 SpawnNewShroomer();
                 haventSpawnedShroomerYet = false;
             }
-            yield return new WaitForSeconds(baseSettings.SpawnDelay);
             haventSpawnedShroomerYet = true;
         }
     }

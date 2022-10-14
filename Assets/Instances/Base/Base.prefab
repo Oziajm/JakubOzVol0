@@ -122,7 +122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d5153ce15db63e4baf19afba66b1c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shrooms: 0
   baseSettings: {fileID: 11400000, guid: 86798d53c7b2ab649b1168ca5a076861, type: 2}
   shroomPrefab: {fileID: 8075394240255264507}
-  shroomerPrefab: {fileID: 6459057206897763103, guid: bfcfe955396fc0042853471933e767ed, type: 3}
+  shroomerSettings: {fileID: 11400000, guid: 3f25feb500ee9184c82929b21fb906f7, type: 2}
+  shroomerPrefab: {fileID: 6482464085313413233, guid: bfcfe955396fc0042853471933e767ed, type: 3}
   shroomerParent: {fileID: 0}

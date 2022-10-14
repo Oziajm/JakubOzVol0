@@ -10,6 +10,9 @@ public class NewGameCreator : MonoBehaviour
     [SerializeField] private int mapSizeY = 50;
     [SerializeField] private int teamsAmmount = 3;
 
+    [Header("Map Settings")]
+    [SerializeField] private Map mapSettings;
+
     [Header("MapTile Prefab")]
     [SerializeField] private Transform mapTilePrefab;
 
@@ -26,9 +29,6 @@ public class NewGameCreator : MonoBehaviour
     [SerializeField] private Transform cameraLocation;
 
     private Vector3 mapCenterLocation = Vector3.zero;
-
-    public int MapSizeX => mapSizeX;
-    public int MapSizeY => mapSizeY;
 
     private void Awake()
     {
@@ -61,7 +61,7 @@ public class NewGameCreator : MonoBehaviour
 
     private void GenerateNewBases()
     {
-        mapCenterLocation += new Vector3(MapSizeX / 2, MapSizeY / 2, 0);
+        mapCenterLocation += new Vector3(mapSizeX / 2, mapSizeY / 2, 0);
 
         for(int i = 0; i < teamsAmmount; i++)
         {
@@ -71,11 +71,12 @@ public class NewGameCreator : MonoBehaviour
             int newLocationX = Mathf.RoundToInt(mapSizeX/2 * 0.69f * directionX);
             int newLocationY = Mathf.RoundToInt(mapSizeY/2 * 0.69f * directionY);
 
-            Debug.Log(directionY + " " + directionX);
-
             Vector3 basePosition = mapCenterLocation + new Vector3(newLocationX, newLocationY,-1);
 
             Instantiate(basePrefab, basePosition, Quaternion.identity, baseParent);
         }
+
+        mapSettings.MapSizeX = mapSizeX;
+        mapSettings.MapSizeY = mapSizeY;
     }
 }

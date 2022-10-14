@@ -10,6 +10,9 @@ public class ShroomController : MonoBehaviour, IDamageable
     [Header("newGameCreater")]
     [SerializeField] private NewGameCreator newGameCreator;
 
+    [Header("Map Settings")]
+    [SerializeField] private Map mapSettings;
+
     [Header("Parent")]
     [SerializeField] private Transform parent;
 
@@ -36,7 +39,7 @@ public class ShroomController : MonoBehaviour, IDamageable
     {
         while (true)
         {
-            int randomNumber = Random.Range(0, 100);
+            int randomNumber = Random.Range(0, 2);
             if (randomNumber == 1 && haventSpawnedYet && newGameCreator.shroomsCounter < 50)
             {
                 SpawnNewShroom();
@@ -79,9 +82,9 @@ public class ShroomController : MonoBehaviour, IDamageable
         newShroomLocationX = shroomLocationX + randomRangeX;
         newShroomLocationY = shroomLocationY + randomRangeY;
 
-        if (newShroomLocationX < newGameCreator.MapSizeX && newShroomLocationX > 0)
+        if (newShroomLocationX < mapSettings.MapSizeX && newShroomLocationX > 0)
         {
-            if (newShroomLocationY < newGameCreator.MapSizeY && newShroomLocationY > 0)
+            if (newShroomLocationY < mapSettings.MapSizeY && newShroomLocationY > 0)
             {
                 return false;
             }
