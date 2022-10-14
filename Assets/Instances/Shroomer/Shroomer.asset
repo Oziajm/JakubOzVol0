@@ -15,6 +15,6 @@ MonoBehaviour:
   Attack: 0
   Defence: 1
   Health: 1
-  collider: {fileID: 0}
-  speed: 3
-  viewRange: 2
+  collider: {fileID: 5939739705831990762, guid: bfcfe955396fc0042853471933e767ed, type: 3}
+  Speed: 3
+  ViewRange: 2

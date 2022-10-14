@@ -14,9 +14,6 @@ public class BaseController : MonoBehaviour, IDamageable
     [SerializeField] private Shroomer shroomerSettings;
     [SerializeField] private GameObject shroomerPrefab;
 
-    [Header("Shroomer Parent")]
-    [SerializeField] private Transform shroomerParent;
-
     Vector3 baseLocation;
 
     int currentBaseHealth;
@@ -56,7 +53,7 @@ public class BaseController : MonoBehaviour, IDamageable
 
         Vector3 newShroomerLocation = baseLocation + new Vector3(4 * directionX, 4 * directionY,0);
 
-        Instantiate(shroomerPrefab, newShroomerLocation, Quaternion.identity, shroomerParent);
+        Instantiate(shroomerPrefab, newShroomerLocation, Quaternion.identity);
     }
 
     private IEnumerator ShroomerSpawningRoutine()
@@ -69,6 +66,7 @@ public class BaseController : MonoBehaviour, IDamageable
                 haventSpawnedShroomerYet = false;
             }
             haventSpawnedShroomerYet = true;
+            yield return new WaitForSeconds(baseSettings.SpawnDelay);
         }
     }
 

@@ -13,9 +13,6 @@ public class ShroomController : MonoBehaviour, IDamageable
     [Header("Map Settings")]
     [SerializeField] private Map mapSettings;
 
-    [Header("Parent")]
-    [SerializeField] private Transform parent;
-
     private int randomRangeX;
     private int randomRangeY;
 
@@ -39,7 +36,7 @@ public class ShroomController : MonoBehaviour, IDamageable
     {
         while (true)
         {
-            int randomNumber = Random.Range(0, 2);
+            int randomNumber = Random.Range(0, 100);
             if (randomNumber == 1 && haventSpawnedYet && newGameCreator.shroomsCounter < 50)
             {
                 SpawnNewShroom();
@@ -69,7 +66,7 @@ public class ShroomController : MonoBehaviour, IDamageable
         if (!IsNewShroomLocationOutsideTheMap())
         {
             Vector3 newShroomLocation = new Vector3(newShroomLocationX, newShroomLocationY, -1);
-            Instantiate(shroomPrefab, newShroomLocation, Quaternion.identity, parent);
+            Instantiate(shroomPrefab, newShroomLocation, Quaternion.identity);
             haventSpawnedYet = false;
         }
     }

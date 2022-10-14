@@ -31,8 +31,8 @@ public class ShroomerController : MonoBehaviour
             int newDestinationY = Random.Range(0, mapSettings.MapSizeY);
 
             newTargetLocation += new Vector3(newDestinationX, newDestinationY, -1);
-            doNotHaveDestination = false;
             yield return new WaitForSeconds(10);
+            doNotHaveDestination = false;
         }
     }
 }

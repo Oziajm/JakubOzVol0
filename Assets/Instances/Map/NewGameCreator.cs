@@ -16,14 +16,8 @@ public class NewGameCreator : MonoBehaviour
     [Header("MapTile Prefab")]
     [SerializeField] private Transform mapTilePrefab;
 
-    [Header("Map Parent")]
-    [SerializeField] private Transform mapParent;
-
     [Header("Base Prefab")]
     [SerializeField] private Transform basePrefab;
-
-    [Header("Base Parent")]
-    [SerializeField] private Transform baseParent;
 
     [Header("Cam")]
     [SerializeField] private Transform cameraLocation;
@@ -39,7 +33,7 @@ public class NewGameCreator : MonoBehaviour
 
     private void GenerateNewMap()
     {
-        for (int i = 0; i < mapSizeY; i++)
+        for (int i = 1; i < mapSizeY; i++)
         {
             SpawnMapTiles(mapCenterLocation - new Vector3(0, i, 0), mapTilePrefab);
             for (int j = 0; j < mapSizeX; j++)
@@ -51,7 +45,7 @@ public class NewGameCreator : MonoBehaviour
 
     private void SpawnMapTiles(Vector3 spawnPosition, Transform tile)
     {
-        Instantiate(tile, spawnPosition, Quaternion.identity, mapParent);
+        Instantiate(tile, spawnPosition, Quaternion.identity);
     }
 
     private void CenterAllObjects()
@@ -73,7 +67,7 @@ public class NewGameCreator : MonoBehaviour
 
             Vector3 basePosition = mapCenterLocation + new Vector3(newLocationX, newLocationY,-1);
 
-            Instantiate(basePrefab, basePosition, Quaternion.identity, baseParent);
+            Instantiate(basePrefab, basePosition, Quaternion.identity);
         }
 
         mapSettings.MapSizeX = mapSizeX;

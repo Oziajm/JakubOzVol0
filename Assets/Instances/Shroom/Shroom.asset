@@ -15,4 +15,4 @@ MonoBehaviour:
   Attack: 0
   Defence: 1
   Health: 1
-  collider: {fileID: 0}
+  collider: {fileID: 2886216726830065319, guid: f9d5db7ea8cfe844081737318cacf6b2, type: 3}

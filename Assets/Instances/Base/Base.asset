@@ -15,5 +15,5 @@ MonoBehaviour:
   Attack: 0
   Defence: 1
   Health: 1
-  collider: {fileID: 0}
-  spawnDelay: 0
+  collider: {fileID: 8075394240255264500, guid: 9972ccbd742ba4449b8b265ae6689538, type: 3}
+  SpawnDelay: 10
