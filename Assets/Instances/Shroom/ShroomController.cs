@@ -1,13 +1,16 @@
 using UnityEngine;
 using System.Collections;
 
-public class ShroomController : MonoBehaviour
+public class ShroomController : MonoBehaviour, IDamageable
 {
-    [SerializeField] private Shroom shroom;
-    [SerializeField] private GameObject shroomObject;
+    [Header("Shroom")]
+    [SerializeField] private Shroom shroomSettings;
+    [SerializeField] private GameObject shroomPrefab;
 
+    [Header("newGameCreater")]
     [SerializeField] private NewGameCreator newGameCreator;
 
+    [Header("Parent")]
     [SerializeField] private Transform parent;
 
     private int randomRangeX;
@@ -21,22 +24,37 @@ public class ShroomController : MonoBehaviour
     private void Start()
     {
         StartCoroutine(GetChanceToSpawnNewShroom());
+        newGameCreator.shroomsCounter++;
     }
 
-    IEnumerator GetChanceToSpawnNewShroom()
+    public void TakeDamage(int damage)
+    {
+        HitTarget(damage);
+    }
+
+    private IEnumerator GetChanceToSpawnNewShroom()
     {
         while (true)
         {
             int randomNumber = Random.Range(0, 100);
-            Debug.Log(randomNumber);
-            if (randomNumber == 1 && haventSpawnedYet)
+            if (randomNumber == 1 && haventSpawnedYet && newGameCreator.shroomsCounter < 50)
             {
                 SpawnNewShroom();
             } else
             {
                 haventSpawnedYet = true;
             }
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(3);
+        }
+    }
+
+    private void HitTarget(int damage)
+    {
+        int health = shroomSettings.Health;
+        health -= damage;
+        if (health < 1)
+        {
+            StopCoroutine(GetChanceToSpawnNewShroom());
         }
     }
 
@@ -45,12 +63,11 @@ public class ShroomController : MonoBehaviour
         randomRangeX = Random.Range(1, 3);
         randomRangeY = Random.Range(1, 3);
 
-        haventSpawnedYet = false;
-
-        if (IsNewShroomLocationOutsideTheMap())
+        if (!IsNewShroomLocationOutsideTheMap())
         {
             Vector3 newShroomLocation = new Vector3(newShroomLocationX, newShroomLocationY, -1);
-            Instantiate(shroomObject, newShroomLocation, Quaternion.identity, parent);
+            Instantiate(shroomPrefab, newShroomLocation, Quaternion.identity, parent);
+            haventSpawnedYet = false;
         }
     }
 
@@ -66,9 +83,9 @@ public class ShroomController : MonoBehaviour
         {
             if (newShroomLocationY < newGameCreator.MapSizeY && newShroomLocationY > 0)
             {
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 }

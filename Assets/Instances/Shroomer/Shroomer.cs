@@ -7,6 +7,6 @@ public class Shroomer : ScriptableObject
     public int Defence = 1;
     public int Health = 1;
     public Collider2D collider;
-    public int speed = 3;
-    public int viewRange = 2;
+    public int Speed = 3;
+    public int ViewRange = 2;
 }

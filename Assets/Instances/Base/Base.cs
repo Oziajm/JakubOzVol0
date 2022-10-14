@@ -7,5 +7,5 @@ public class Base : ScriptableObject
     public int Defence = 1;
     public int Health = 1;
     public Collider2D collider;
-    public int spawnDelay;
+    public int SpawnDelay;
 }
